@@ -52,11 +52,17 @@
     <Compile Include="Model\ShotModel.cs" />
     <Compile Include="Model\TankModel.cs" />
     <Compile Include="Model\TanksImageModel.cs" />
-    <Compile Include="View\Form1.cs">
+    <Compile Include="View\EntranceGame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="View\EntranceGame.Designer.cs">
+      <DependentUpon>EntranceGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\GameForm.Designer.cs">
+      <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +75,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\EntranceGame.resx">
+      <DependentUpon>EntranceGame.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

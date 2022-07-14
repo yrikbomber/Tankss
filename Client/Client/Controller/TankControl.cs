@@ -116,6 +116,136 @@ namespace Client.Controller
             }
             return point;
         }
+        public Rectangle MoveLeft(Point location)
+        {
+            if (!Tank.Alive)
+            {
+                return Tank.TankRectangle;
+            }
+
+            Tank.Location = location;
+
+            Tank.Size = new Size(TanksImage.Mov_Left_ImageBorder.Width / 4, TanksImage.Mov_Left_ImageBorder.Height / 4);
+
+            Rectangle rect = TanksImage.Mov_Left_ImageBorder.Rectangle;
+
+            Tank.TankImageBounds = rect;
+
+            Tank.Snout = new Point(Tank.Location.X, Tank.Location.Y + Tank.Size.Height / 2);
+
+            if (!Tank.Fire)
+            {
+                Tank.Shot.Location = Tank.Snout;
+            }
+
+            currentMove = MoveLeft;
+
+            return rect;
+        }
+        public Rectangle MoveRight(Point location)
+        {
+            if (!Tank.Alive)
+            {
+                return Tank.TankRectangle;
+            }
+
+            Tank.Location = location;
+
+            Tank.Size = new Size(TanksImage.Mov_Right_ImageBorder.Width / 4, TanksImage.Mov_Right_ImageBorder.Height / 4);
+
+            Rectangle rect = TanksImage.Mov_Right_ImageBorder.Rectangle;
+
+            Tank.TankImageBounds = rect;
+
+            Tank.Snout = new Point(Tank.Location.X + Tank.Size.Width, Tank.Location.Y + Tank.Size.Height / 2);
+
+            if (!Tank.Fire)
+            {
+                Tank.Shot.Location = Tank.Snout;
+            }
+
+            currentMove = MoveRight;
+
+            return rect;
+        }
+        public Rectangle MoveUp(Point location)
+        {
+            if (!Tank.Alive)
+            {
+                return Tank.TankRectangle;
+            }
+
+            Tank.Location = location;
+
+            Tank.Size = new Size(TanksImage.Mov_Up_ImageBorder.Width / 4, TanksImage.Mov_Up_ImageBorder.Height / 4);
+
+            Rectangle rect = TanksImage.Mov_Up_ImageBorder.Rectangle;
+
+            Tank.TankImageBounds = rect;
+
+            Tank.Snout = new Point(Tank.Location.X + Tank.Size.Width / 2, Tank.Location.Y);
+
+            if (!Tank.Fire)
+            {
+                Tank.Shot.Location = Tank.Snout;
+            }
+
+            currentMove = MoveUp;
+
+            return rect;
+        }
+        public Rectangle MoveDown(Point location)
+        {
+            if (!Tank.Alive)
+            {
+                return Tank.TankRectangle;
+            }
+
+            Tank.Location = location;
+
+            Tank.Size = new Size(TanksImage.Mov_Down_ImageBorder.Width / 4, TanksImage.Mov_Down_ImageBorder.Height / 4);
+
+            Rectangle rect = TanksImage.Mov_Down_ImageBorder.Rectangle;
+
+            Tank.TankImageBounds = rect;
+
+            Tank.Snout = new Point(Tank.Location.X + Tank.Size.Width / 2, Tank.Location.Y);
+            if (!Tank.Fire)
+            {
+                Tank.Shot.Location = Tank.Snout;
+            }
+            currentMove = MoveDown;
+            return rect;
+        }
+       
+        // ОГОНЬ 
+        public void Fire()
+        {
+            if (Tank.Fire || !Tank.Alive)
+            {
+                return;
+            }
+
+            Tank.Fire = true;
+            Tank.Shot.Run = true;
+
+            if (currentMove == MoveRight)
+            {
+                MoveShow(Tank.Shot.MoveRight);
+            }
+            else if (currentMove == MoveLeft)
+            {
+                MoveShow(Tank.Shot.MoveLeft);
+            }
+            else if (currentMove == MoveUp)
+            {
+                MoveShow(Tank.Shot.MoveUp);
+            }
+            else if (currentMove == MoveDown)
+            {
+                MoveShow(Tank.Shot.MoveDown);
+            }
+        }
 
 
 
@@ -146,5 +276,6 @@ namespace Client.Controller
         public Rectangle FieldBorder { get; set; }
         public TanksImageModel TanksImage { get; protected set; }
     }
+
   
 }
